@@ -25,6 +25,12 @@ def get_port(default: int = 5000) -> int:
         pass
     return default
 
+def get_debug(default: bool = False) -> bool:
+    raw = os.getenv("DEBUG")
+    if raw is None:
+        return default
+    return raw.lower() in ("1", "true", "yes", "on")
+
 
 load_dotenv()
 
@@ -39,9 +45,9 @@ def server_info() -> str:
 @app.route("/author")
 def author():
     data = {
-        "name": "Stas",
-        "course": 3,
-        "age": 21,
+        "name": "Dmritrii",
+        "course": 2,
+        "age": 19,
     }
     return jsonify(data)
 
@@ -50,6 +56,7 @@ def author():
 def sum_route():
     a_raw = request.args.get("a")
     b_raw = request.args.get("b")
+
     if a_raw is None or b_raw is None:
         return jsonify({"error": "Query params 'a' and 'b' are required"}), 400
 
@@ -60,8 +67,12 @@ def sum_route():
         return jsonify({"error": "Query params 'a' and 'b' must be numbers"}), 400
 
     result = operation(a, b)
-    return jsonify({"a": a, "b": b, "result": result})
+    return jsonify({"sum": result})
+
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=get_port())
+    app.run(
+        debug=get_debug(),
+        port=get_port(),
+    )
