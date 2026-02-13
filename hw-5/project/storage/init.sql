@@ -1,0 +1,3 @@
+-- Init script for PostgreSQL container
+-- Intentionally left minimal.
+-- Database schema is managed by Django migrations.
