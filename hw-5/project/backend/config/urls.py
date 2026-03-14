@@ -10,7 +10,7 @@ schema_view = get_schema_view(
     openapi.Info(
         title="Comments API",
         default_version="v1",
-        description="Документация API для сервиса комментариев к постам",
+        description="API documentation for the comments service",
     ),
     public=True,
     permission_classes=[AllowAny],
@@ -22,3 +22,4 @@ urlpatterns = [
     path("api/", include("comments.urls")),
     path("swagger/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
 ]
+
