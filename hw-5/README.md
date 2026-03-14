@@ -71,18 +71,3 @@ docker compose exec django python backend/manage.py test comments
 - `Ran 13 tests`
 - `OK`
 
-## Быстрая проверка перед сдачей
-
-1. `docker compose ps` - оба контейнера в статусе `Up`
-2. `docker compose exec django python backend/manage.py test comments` - все тесты проходят успешно
-3. Открывается `http://localhost:8000/swagger/`
-4. Открывается `http://localhost:8000/api/posts/`
-
-## Полезные команды из Makefile
-
-```bash
-make up
-make migrate
-make test
-make down
-```
